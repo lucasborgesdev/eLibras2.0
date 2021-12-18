@@ -1,19 +1,22 @@
 import React from "react"
+import '../assets/styles/global.css'
 import Signup from "./authentication/Signup"
 import { AuthProvider } from "../contexts/AuthContext"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import Profile from "./authentication/Profile"
 import Login from "./authentication/Login"
 import PrivateRoute from "./authentication/PrivateRoute"
 import ForgotPassword from "./authentication/ForgotPassword"
 import UpdateProfile from "./authentication/UpdateProfile"
 import Dashboard from "./google-drive/Dashboard"
+import Landing from "../pages/Landing/landing"
 
 function App() {
   return (
     <Router>
       <AuthProvider>
         <Switch>
+
           {/* Drive */}
           <PrivateRoute exact path="/" component={Dashboard} />
           <PrivateRoute exact path="/folder/:folderId" component={Dashboard} />
@@ -29,6 +32,11 @@ function App() {
 
           {/* ADD Youtube link */}
           <PrivateRoute path="/link" component={Profile} />
+          
+          {/*Pagina inicial do projeto */}
+          <Route path="/landing" component={Landing} />
+
+          <Redirect to="/landing" />
 
         </Switch>
       </AuthProvider>
