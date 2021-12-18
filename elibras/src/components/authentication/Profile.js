@@ -3,6 +3,7 @@ import { Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import CenteredContainer from "./CenteredContainer";
+import Navbar from '../google-drive/Navbar'
 
 export default function Profile() {
   const [error, setError] = useState("");
@@ -21,7 +22,10 @@ export default function Profile() {
   }
 
   return (
+    <>
+     <Navbar/>
     <CenteredContainer>
+     
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Perfil</h2>
@@ -38,5 +42,6 @@ export default function Profile() {
         </Button>
       </div>
     </CenteredContainer>
+    </>
   );
 }

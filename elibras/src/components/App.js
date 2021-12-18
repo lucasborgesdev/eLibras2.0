@@ -26,6 +26,10 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/forgot-password" component={ForgotPassword} />
+
+          {/* ADD Youtube link */}
+          <PrivateRoute path="/link" component={Profile} />
+
         </Switch>
       </AuthProvider>
     </Router>
