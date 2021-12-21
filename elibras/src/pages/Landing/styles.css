@@ -17,6 +17,12 @@
   }
  
   @media (max-width: 900px) {
+
+    .logosLanding {
+        display: none;
+        width: 5%;
+        height: 5%;
+      }
     
     .logoImg{
         width: 25%;
@@ -24,6 +30,24 @@
      } 
 
 }
+
+@media (min-width: 900px) {
+
+.logosLanding {
+    display: flex;
+    width: 25%;
+    height: 25%;
+  }
+
+  .logo-container {
+    grid-area: logo;
+    align-self: center;
+    margin: 0;
+  }
+
+}
+
+
 
 
 
@@ -111,6 +135,10 @@
   margin-left: 0.8rem;
 }
 
+.ifcLogo{
+  border-radius: 0.8rem;
+}
+
 @media (min-width: 1000px) {
   #page-landing-content 
 
@@ -129,17 +157,7 @@
   }
 
    
-  .logosLanding {
-    display: flex;
-    width: 25%;
-    height: 25%;
-  }
-
-  .logo-container {
-    grid-area: logo;
-    align-self: center;
-    margin: 0;
-  }
+  
 
   .logo-container h2 {
     text-align: initial;

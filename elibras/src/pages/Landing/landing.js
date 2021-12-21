@@ -18,14 +18,14 @@ function Landing() {
       
       <div className="logosLanding">
         <img className="logoImg" src={Libras} alt="libras" />
-        <img  className="logoImg"src={Ifc} alt="" />
+        <img  className="logoImg ifcLogo"src={Ifc} alt="" />
       </div>
 
       <div id="page-landing-content" className="container">
         <div className="logo-container">
           <img src={logoimg} alt="logo" />
 
-          <h2>Sua plataforma de estudos em Libras online</h2>
+          <h2 className="plataforma">Sua plataforma de estudos em Libras online</h2>
         </div>
         <img
           src={landingimg}
