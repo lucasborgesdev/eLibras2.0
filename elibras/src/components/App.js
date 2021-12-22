@@ -10,6 +10,7 @@ import ForgotPassword from "./authentication/ForgotPassword"
 import UpdateProfile from "./authentication/UpdateProfile"
 import Dashboard from "./google-drive/Dashboard"
 import Landing from "../pages/Landing/landing"
+import LinkVideo from "../pages/LinkVideo/LinkVideo" 
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
           <Route path="/forgot-password" component={ForgotPassword} />
 
           {/* ADD Youtube link */}
-          <PrivateRoute path="/link" component={Profile} />
+          <PrivateRoute path="/videos" component={LinkVideo} />
           
           {/*Pagina inicial do projeto */}
           <Route path="/landing" component={Landing} />

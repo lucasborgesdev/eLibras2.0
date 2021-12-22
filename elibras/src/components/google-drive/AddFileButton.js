@@ -7,6 +7,7 @@ import { storage, database } from "../../firebase"
 import { ROOT_FOLDER } from "../../hooks/useFolder"
 import { v4 as uuidV4 } from "uuid"
 import { ProgressBar, Toast } from "react-bootstrap"
+import { FiUpload } from "react-icons/fi";
 
 export default function AddFileButton({ currentFolder }) {
   const [uploadingFiles, setUploadingFiles] = useState([])
@@ -89,7 +90,10 @@ export default function AddFileButton({ currentFolder }) {
   return (
     <>
       <label className="btn btn-outline-success btn-sm m-0 mr-2">
-        <FontAwesomeIcon icon={faFileUpload} />
+      <FiUpload/>
+
+       
+
         <input
           type="file"
           onChange={handleUpload}

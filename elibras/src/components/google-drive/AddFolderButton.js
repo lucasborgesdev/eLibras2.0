@@ -5,6 +5,7 @@ import { faFolderPlus } from "@fortawesome/free-solid-svg-icons"
 import { database } from "../../firebase"
 import { useAuth } from "../../contexts/AuthContext"
 import { ROOT_FOLDER } from "../../hooks/useFolder"
+import { FiUpload } from "react-icons/fi";
 
 export default function AddFolderButton({ currentFolder }) {
   const [open, setOpen] = useState(false)
@@ -43,6 +44,7 @@ export default function AddFolderButton({ currentFolder }) {
   return (
     <>
       <Button onClick={openModal} variant="outline-success" size="sm">
+      
         <FontAwesomeIcon icon={faFolderPlus} />
       </Button>
       <Modal show={open} onHide={closeModal}>
