@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../../firebase";
 import Navbar from "../../components/google-drive/Navbar";
-import {VideoInput} from "../../components/Video/VideoInput";
+import { VideoInput } from "../../components/Video/VideoInput";
 import Loader from "../../components/layout/Loader/Loader";
 import ReactPlayer from "react-player";
 
@@ -14,16 +14,17 @@ function LinkVideo() {
   const [removeLoader, setRemoveLoader] = React.useState(false);
 
   React.useEffect(() => {
-    const fetchData = async () => {
-      const db = firebase.firestore();
-      const data = await db.collection("videos").get();
-      console.log(data.link);
-      setVideos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      setTimeout(() => {
-        setRemoveLoader(true);
-      }, 3000);
-    };
-    fetchData();
+    const db = firebase.firestore();
+    const unsubscribe = db.collection("videos").onSnapshot((snapshot) => {
+      const videosData = [];
+      snapshot.forEach((doc) => videosData.push({ ...doc.data(), id: doc.id }));
+      setVideos(videosData);
+    });
+
+    setTimeout(() => {
+      setRemoveLoader(true);
+    }, 1500);
+    return unsubscribe
   }, []);
 
   const onCreate = () => {
@@ -45,8 +46,8 @@ function LinkVideo() {
           <button onClick={onCreate}>Add</button>
           <ul>
             {videos.map((video) => (
-              <li key = {video.link}>
-                <VideoInput video={video}/>
+              <li key={video.link}>
+                <VideoInput video={video} />
                 <ReactPlayer url={video.link} />
               </li>
             ))}
