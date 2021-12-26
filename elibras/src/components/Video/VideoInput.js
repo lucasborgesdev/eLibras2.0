@@ -1,20 +1,30 @@
+import firebase from "firebase";
 import React from "react";
-import firebase from "../../firebase";
-import ReactPlayer from "react-player";
+
 
 
 export const VideoInput = ({ video }) => {
-  const [link, setLink] = React.useState(video.name);
+  const [link, setLink] = React.useState(video.link);
+
+  const onUpdate = () => {
+    const db = firebase.firestore()
+    db.collection('videos').doc(video.id).set({...video, link})
+  }
+  const onDelete = () => {
+    const db = firebase.firestore()
+    db.collection('videos').doc(video.id).delete()
+  }
 
   return (
     <div>
       <input
         value={link}
-        onChange={e => {
+        onChange={(e) => {
           setLink(e.target.value);
         }}
       />
-      <button>Update</button>
+      <button onClick={onUpdate}>Atualizar</button>
+      <button onClick={onDelete}>Deletar</button>
     </div>
   );
 };

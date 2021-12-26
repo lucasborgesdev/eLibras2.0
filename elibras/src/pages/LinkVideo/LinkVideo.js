@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../../firebase";
 import Navbar from "../../components/google-drive/Navbar";
-import VideoInput from "../../components/Video/VideoInput";
+import {VideoInput} from "../../components/Video/VideoInput";
 import Loader from "../../components/layout/Loader/Loader";
 import ReactPlayer from "react-player";
 
@@ -20,7 +20,7 @@ function LinkVideo() {
       console.log(data.link);
       setVideos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       setTimeout(() => {
-        setRemoveLoader(true)
+        setRemoveLoader(true);
       }, 3000);
     };
     fetchData();
@@ -45,13 +45,15 @@ function LinkVideo() {
           <button onClick={onCreate}>Add</button>
           <ul>
             {videos.map((video) => (
-              <ReactPlayer url={video.link} />
+              <li key = {video.link}>
+                <VideoInput video={video}/>
+                <ReactPlayer url={video.link} />
+              </li>
             ))}
           </ul>
         </div>
-        
       </div>
-      {!removeLoader && <Loader/>}
+      {!removeLoader && <Loader />}
     </>
   );
 }
