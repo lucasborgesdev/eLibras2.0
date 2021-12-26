@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import firebase from "../../firebase";
 import Navbar from "../../components/google-drive/Navbar";
 import VideoInput from "../../components/Video/VideoInput";
+import Loader from "../../components/layout/Loader/Loader";
 import ReactPlayer from "react-player";
 
 // import { Container } from './styles';
@@ -10,6 +11,7 @@ console.log("Aqui não temos arrego!");
 function LinkVideo() {
   const [videos, setVideos] = React.useState([]);
   const [newVideo, setNewVideo] = React.useState();
+  const [removeLoader, setRemoveLoader] = React.useState(false);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +19,9 @@ function LinkVideo() {
       const data = await db.collection("videos").get();
       console.log(data.link);
       setVideos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setTimeout(() => {
+        setRemoveLoader(true)
+      }, 3000);
     };
     fetchData();
   }, []);
@@ -44,7 +49,9 @@ function LinkVideo() {
             ))}
           </ul>
         </div>
+        
       </div>
+      {!removeLoader && <Loader/>}
     </>
   );
 }
