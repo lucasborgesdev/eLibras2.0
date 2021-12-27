@@ -8,29 +8,42 @@ import ReactPlayer from "react-player";
 // import { Container } from './styles';
 console.log("Aqui não temos arrego!");
 
+
+
 function LinkVideo() {
   const [videos, setVideos] = React.useState([]);
   const [newVideo, setNewVideo] = React.useState();
   const [removeLoader, setRemoveLoader] = React.useState(false);
 
+
   React.useEffect(() => {
+    
     const db = firebase.firestore();
     const unsubscribe = db.collection("videos").onSnapshot((snapshot) => {
       const videosData = [];
       snapshot.forEach((doc) => videosData.push({ ...doc.data(), id: doc.id }));
       setVideos(videosData);
     });
-
-    setTimeout(() => {
-      setRemoveLoader(true);
-    }, 1500);
+       
+    callLoader()
     return unsubscribe
   }, []);
 
   const onCreate = () => {
+    
     const db = firebase.firestore();
-    db.collection("videos").add({ link: newVideo });
+     db.collection("videos").add({ link: newVideo });
+     callLoader()
   };
+
+  function callLoader() {
+    setRemoveLoader(false);
+    setTimeout(() => {
+      setRemoveLoader(true);
+    }, 1500);
+    
+  
+  }
 
   console.log(videos);
   return (
@@ -47,7 +60,7 @@ function LinkVideo() {
           <ul>
             {videos.map((video) => (
               <li key={video.link}>
-                <VideoInput video={video} />
+                <VideoInput video={video}  callLoader={callLoader}/>
                 <ReactPlayer url={video.link} />
               </li>
             ))}
