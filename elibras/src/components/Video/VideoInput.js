@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import { Row,Button } from "react-bootstrap";
 import React from "react";
 
 
@@ -25,8 +26,8 @@ export const VideoInput = ({ video,callLoader }) => {
           setLink(e.target.value);
         }}
       />
-      <button onClick={onUpdate}>Atualizar</button>
-      <button onClick={onDelete}>Deletar</button>
+      <Button variant="warning" onClick={onUpdate}>Atualizar</Button>
+      <Button variant="danger" onClick={onDelete}>Deletar</Button>
     </div>
   );
 };
