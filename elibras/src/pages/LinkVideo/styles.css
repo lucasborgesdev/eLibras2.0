@@ -1,3 +1,19 @@
 .video{
   
 }
+
+.videoImputs{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.videoBtn{
+  
+margin-left: 6px !important;
+padding-right: 2px; 
+}
+
+.inputVideo{
+  width: 50%;
+}

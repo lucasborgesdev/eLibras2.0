@@ -19,15 +19,18 @@ export const VideoInput = ({ video,callLoader }) => {
   }
 
   return (
-    <div>
-      <input
+    <div className="videoImputs">
+      <input className="inputVideo"
         value={link}
         onChange={(e) => {
           setLink(e.target.value);
         }}
       />
-      <Button variant="warning" onClick={onUpdate}>Atualizar</Button>
-      <Button variant="danger" onClick={onDelete}>Deletar</Button>
+      <div >
+      <Button className="videoBtn" variant="warning"  size="sm" onClick={onUpdate}>Atualizar</Button>
+      <Button className="videoBtn" variant="danger"  size="sm" onClick={onDelete}>Deletar</Button>
+      </div>
+      
     </div>
   );
 };
