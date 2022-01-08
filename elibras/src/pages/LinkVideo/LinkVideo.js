@@ -44,42 +44,46 @@ function LinkVideo() {
   return (
     <>
       <Navbar />
-     <div className="container container-fluid">
-     <Row className="mb-3 justify-content-md-center flex">
-        <div className="row">
-          <h3>Repositorio de videos</h3>
+      <div className="pageVideo d-flex justify-content-center">
+        <Row className="">
+          <div className="">
+            <h3 className="title-video">Repositorio de videos</h3>
 
-          <div className="col-md-8 offset-md-1">
-            <input
-              value={newVideo}
-              onChange={(e) => setNewVideo(e.target.value)}
-            />
-            <Button variant="primary" onClick={onCreate}>
-              Adicionar
-            </Button>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>Conteudo</th>
-                </tr>
-              </thead>
-              <tbody>
-                {videos.map((video) => (
+            <div className="divImput">
+              <input
+                className="videoImputs"
+                value={newVideo}
+                onChange={(e) => setNewVideo(e.target.value)}
+              />
+              <Button className="videoImputs" variant="primary" onClick={onCreate}>
+                Adicionar
+              </Button>
+              <Table striped bordered hover>
+                <thead>
                   <tr>
-                    <td  className="videoTD" key={video.link}>
-                      <VideoInput video={video} callLoader={callLoader} />
-                      <ReactPlayer className="video" url={video.link}
-                      width="100%" />
-                    </td>
+                    <th>Conteúdo</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {videos.map((video) => (
+                    <tr>
+                      <td className="videoTD" key={video.link}>
+                        <VideoInput video={video} callLoader={callLoader} />
+                        <ReactPlayer
+                          className=""
+                          url={video.link}
+                          width="100%"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
           </div>
-        </div>
-        {!removeLoader && <Loader />}
-      </Row>
-     </div>
+          {!removeLoader && <Loader />}
+        </Row>
+      </div>
     </>
   );
 }

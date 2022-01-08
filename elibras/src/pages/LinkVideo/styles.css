@@ -1,19 +1,64 @@
-.video{
-  
+.title-video {
+  text-align: center;
+  width: 100%;
 }
 
-.videoImputs{
+.videoEdit{
   display: flex;
   width: 100%;
-  justify-content: space-between;
+
 }
 
-.videoBtn{
-  
-margin-left: 6px !important;
-padding-right: 2px; 
-}
-
-.inputVideo{
+.videoEdit .inputVideo {
   width: 50%;
+}
+
+@media (min-width: 800px){
+  .videoEdit .inputVideo {
+    width: 80%;
+  }
+}
+
+
+@media (max-width: 768px){
+  .videoEdit .inputVideo {
+    width: 60%;
+  }
+}
+
+
+.buttonsVidos {
+  width: 50%;
+  display: flex;
+  justify-content:center ;
+}
+
+.videoImputs {
+  display: flex;
+  width: 100%;
+  
+}
+
+.pageVideo {
+  width: 100%;
+}
+
+.videoBtn {
+  margin-left: 6px !important;
+  padding-right: 2px;
+}
+
+
+
+@media (min-width: 800px){
+  .videoTD{
+    width: 800px !important;
+  }
+}
+
+
+.divImput input .videoImputs {
+  
+  width: 50% !important;
+ 
 }
