@@ -18,7 +18,7 @@ export default function NavbarComponent() {
         <Nav.Link as={Link} to="/videos">
           Videos
         </Nav.Link>
-        <Nav.Link as={Link} to="/videos">
+        <Nav.Link as={Link} to="/glossario">
           Glossário
         </Nav.Link>
       </Nav>

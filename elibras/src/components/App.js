@@ -11,6 +11,7 @@ import UpdateProfile from "./authentication/UpdateProfile"
 import Dashboard from "./google-drive/Dashboard"
 import Landing from "../pages/Landing/landing"
 import LinkVideo from "../pages/LinkVideo/LinkVideo" 
+import Glossary from "../pages/Glossary/glossary"
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
 
           {/* ADD Youtube link */}
           <PrivateRoute path="/videos" component={LinkVideo} />
+
+          {/* ADD  glossary */}
+          <PrivateRoute path="/glossario" component={Glossary} />
           
           {/*Pagina inicial do projeto */}
           <Route path="/landing" component={Landing} />

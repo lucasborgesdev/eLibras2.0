@@ -55,7 +55,11 @@ function LinkVideo() {
                 value={newVideo}
                 onChange={(e) => setNewVideo(e.target.value)}
               />
-              <Button className="videoImputs" variant="primary" onClick={onCreate}>
+              <Button
+                className="videoImputs"
+                variant="primary"
+                onClick={onCreate}
+              >
                 Adicionar
               </Button>
               <Table striped bordered hover>

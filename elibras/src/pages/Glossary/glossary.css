@@ -1,0 +1,23 @@
+
+
+
+.pageGlosssary{
+  text-align: center;
+  width: 100%;
+}
+.imputLabel{
+  display: flex;
+  width: 100%;
+ 
+}
+
+.imputLabel .divInput{
+  width: 80%
+}
+
+@media (max-width: 768px){
+  .pageGlosssary{
+    text-align: center;
+    width: 70%;
+  }
+}
