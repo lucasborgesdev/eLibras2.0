@@ -13,6 +13,8 @@ export default function AddFileButton({ currentFolder }) {
   const [uploadingFiles, setUploadingFiles] = useState([])
   const { currentUser } = useAuth()
 
+  console.log('Usuario',currentUser)
+
   function handleUpload(e) {
     const file = e.target.files[0]
     if (currentFolder == null || file == null) return
@@ -79,6 +81,7 @@ export default function AddFileButton({ currentFolder }) {
                   createdAt: database.getCurrentTimestamp(),
                   folderId: currentFolder.id,
                   userId: currentUser.uid,
+                  Institution: 1
                 })
               }
             })

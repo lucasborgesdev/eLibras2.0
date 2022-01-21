@@ -40,8 +40,9 @@ function reducer(state, { type, payload }) {
   }
 }
 
-export function useFolder(folderId = null, folder = null) {
+export function useFolder(folderId = null, folder = null,Institution = 1) {
   const [state, dispatch] = useReducer(reducer, {
+    Institution,
     folderId,
     folder,
     childFolders: [],
@@ -79,9 +80,11 @@ export function useFolder(folderId = null, folder = null) {
   }, [folderId])
 
   useEffect(() => {
+    //verificas pasta
     return database.folders
       .where("parentId", "==", folderId)
-      .where("userId", "==", currentUser.uid)
+      .where("Institution", "==", 1 )
+      //.where("userId", "==", currentUser.uid)
       .orderBy("createdAt")
       .onSnapshot(snapshot => {
         dispatch({
@@ -95,7 +98,8 @@ export function useFolder(folderId = null, folder = null) {
     return (
       database.files
         .where("folderId", "==", folderId)
-        .where("userId", "==", currentUser.uid)
+        //.where("userId", "==", currentUser.uid)
+        .where("Institution", "==", 1 )
         // .orderBy("createdAt")
         .onSnapshot(snapshot => {
           dispatch({
