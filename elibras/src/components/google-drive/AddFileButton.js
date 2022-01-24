@@ -13,7 +13,7 @@ export default function AddFileButton({ currentFolder }) {
   const [uploadingFiles, setUploadingFiles] = useState([])
   const { currentUser } = useAuth()
 
-  console.log('Usuario',currentUser)
+  
 
   function handleUpload(e) {
     const file = e.target.files[0]
