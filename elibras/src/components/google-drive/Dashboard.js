@@ -33,8 +33,10 @@ export default function Dashboard() {
   const [actors, setActors] = React.useState([]);
   const [relationship, setRelationship] = React.useState([]);
   const [getUser, setGetUSer] = React.useState({});
+  const [cont, setCont ]  = useState(0);
 
   React.useEffect(() => {
+    //handleClose()
     const db = firebase.firestore();
     const dbInstitutions = db
       .collection("Institution")
@@ -47,9 +49,10 @@ export default function Dashboard() {
       });
 
     return dbInstitutions;
-  }, []);
+  }, [institutions]);
 
   React.useEffect(() => {
+    //handleClose()
     const db = firebase.firestore();
     const dbActor = db.collection("actor").onSnapshot((snapshot) => {
       const actorData = [];
@@ -58,9 +61,10 @@ export default function Dashboard() {
     });
 
     return dbActor;
-  }, []);
+  }, [idactor]);
 
   React.useEffect(() => {
+    //handleClose()
     const db = firebase.firestore();
     const dbRelationship = db
       .collection("relationship")
@@ -76,6 +80,7 @@ export default function Dashboard() {
   }, []);
 
   React.useEffect(() => {
+    //handleClose()
     const db = firebase.firestore();
     const dbGetUSer = db
       .collection("relationship")
@@ -89,19 +94,57 @@ export default function Dashboard() {
       });
 
     return dbGetUSer;
-  }, []);
+  }, [relationship]);
 
   React.useEffect(() => {
-    //if (!getUser) return "sem dado";
+    //handleClose()
+    if (!getUser) {
+      //handleShow();
+    } 
     
     if (getUser[0] != undefined) {
-      console.log("aaa to com depressao:", getUser[0]);
+      //console.log("aaa to com depressao:", getUser[0]);
 
       let { id_actor } = getUser[0];
 
       set_idactor(id_actor);
+      
     }
+    
+    if(idactor === "1") {
+      console.log('É um aluno')
+      handleClose()
+    }
+    else if(idactor === "2"){
+      console.log('É um Interprete')
+      handleClose()
+    }
+    else if(idactor === "3"){
+      console.log('É um professor')
+      handleClose()
+    }
+    else if(!idactor){     
+      console.log('Sem idactor ')
+      console.log(cont)
+        if(cont > 0){
+            
+          console.log('Sem idactor ')
+          handleShow()
+        }
+      }
+      contador()
+    
   }, [getUser]);
+
+
+  React.useEffect(() => {
+  
+
+  console.log(cont)
+      
+    
+   
+  }, [idactor] )
 
   //console.log("id_actor", idactor);
 
@@ -116,15 +159,13 @@ export default function Dashboard() {
     handleClose();
   };
 
+  function contador() {
+    setCont(cont +1)
+  }
   
-console.log('user.uid', currentUser.uid)
-  console.log("getUser", getUser);
-  console.log(idactor);
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
+     
 
       <Navbar />
       <Container fluid>
@@ -163,7 +204,7 @@ console.log('user.uid', currentUser.uid)
       </Container>
       <div className="modal">
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
+          <Modal.Header >
             <Modal.Title>Bem vindo!!!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -209,11 +250,9 @@ console.log('user.uid', currentUser.uid)
           </Form>
 
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
+           
             <Button variant="primary" onClick={createRelationship}>
-              Save Changes
+              Salvar
             </Button>
           </Modal.Footer>
         </Modal>
