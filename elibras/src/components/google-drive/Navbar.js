@@ -1,7 +1,4 @@
 import React from "react";
-import Libras from "../../assets/images/Libras.svg";
-import { ImFolderUpload } from "react-icons/fa";
-import IFC_horizontal from "../../assets/images/Logo_IFC_horizontal_Camboriu.png";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 

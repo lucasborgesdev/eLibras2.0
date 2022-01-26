@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import studyicon from "../../assets/images/icons/study.svg";
 import Libras from "../../assets/images/Libras.png";
 import Ifc from "../../assets/images/Logo_IFC.png";
 import giveClassesicon from "../../assets/images/icons/give-classes.svg";
-import purplehearticon from "../../assets/images/icons/purple-heart.svg";
+
 
 import "./styles.css";
 

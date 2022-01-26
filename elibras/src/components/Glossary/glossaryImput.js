@@ -1,7 +1,7 @@
 import firebase from "firebase";
 
 import React, { useState } from "react";
-import { Alert, Button, Modal } from "react-bootstrap";
+import {Button, Modal } from "react-bootstrap";
 
 export const GlossaryInput = ({ publication }) => {
   const [content, setContent] = React.useState(publication.content);
@@ -11,7 +11,6 @@ export const GlossaryInput = ({ publication }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [showAlert, setShowALert] = useState(true);
 
   function AlertDismissible() {
     return <></>;
@@ -64,8 +63,6 @@ export const GlossaryInput = ({ publication }) => {
           Editar
         </Button>
       </div>
-
-     
     </div>
   );
 };

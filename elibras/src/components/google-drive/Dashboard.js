@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Container } from "react-bootstrap";
 import { useFolder } from "../../hooks/useFolder";
 import AddFolderButton from "./AddFolderButton";
@@ -8,9 +8,9 @@ import Folder from "./Folder";
 import File from "./File";
 import Navbar from "./Navbar";
 import FolderBreadcrumbs from "./FolderBreadcrumbs";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 import { useState } from "react";
-import { Form, Button, Modal, Card, Alert } from "react-bootstrap";
+import { Form, Button, Modal} from "react-bootstrap";
 import firebase from "../../firebase";
 import { database } from "../../firebase";
 
@@ -33,7 +33,8 @@ export default function Dashboard() {
   const [actors, setActors] = React.useState([]);
   const [relationship, setRelationship] = React.useState([]);
   const [getUser, setGetUSer] = React.useState({});
-  const [cont, setCont ]  = useState(0);
+  const [cont, setCont] = useState(0);
+  //const history = useHistory()
 
   React.useEffect(() => {
     //handleClose()
@@ -99,52 +100,50 @@ export default function Dashboard() {
   React.useEffect(() => {
     //handleClose()
     if (!getUser) {
-      //handleShow();
-    } 
     
+    }
+
     if (getUser[0] != undefined) {
       //console.log("aaa to com depressao:", getUser[0]);
 
       let { id_actor } = getUser[0];
 
       set_idactor(id_actor);
-      
     }
-    
-    if(idactor === "1") {
-      console.log('É um aluno')
-      handleClose()
-    }
-    else if(idactor === "2"){
-      console.log('É um Interprete')
-      handleClose()
-    }
-    else if(idactor === "3"){
-      console.log('É um professor')
-      handleClose()
-    }
-    else if(!idactor){     
-      console.log('Sem idactor ')
-      console.log(cont)
-        if(cont > 0){
-            
-          console.log('Sem idactor ')
-          handleShow()
-        }
-      }
-      contador()
-    
   }, [getUser]);
 
-
   React.useEffect(() => {
-  
+    if (idactor === "1") {
+      console.log("É um aluno");
 
-  console.log(cont)
+      handleClose();
       
-    
-   
-  }, [idactor] )
+      
+      
+    } else if (idactor === "2") {
+      console.log("É um Interprete");
+      handleClose();
+      
+      
+    } else if (idactor === "3") {
+      console.log("É um professor");
+      handleClose();
+    } else if (!idactor) {
+      console.log("Sem idactor ");
+      console.log(cont);
+      handleShow();
+      console.log('idactor', idactor)
+      if (cont > 0) {
+        console.log("Sem idactor ");
+        
+        
+
+      }
+    }
+    contador();
+
+    console.log(cont);
+  }, [idactor]);
 
   //console.log("id_actor", idactor);
 
@@ -160,19 +159,30 @@ export default function Dashboard() {
   };
 
   function contador() {
-    setCont(cont +1)
+    setCont(cont + 1);
   }
-  
+
   return (
     <>
-     
-
       <Navbar />
+     {idactor === "3" && <h1>Professor</h1>}
+     {idactor === "1" && <h1>Aluno</h1>}
+     {idactor === "2" && <h1>Interprete</h1>}
       <Container fluid>
         <div className="d-flex align-items-center">
-          <FolderBreadcrumbs currentFolder={folder} />
-          <AddFileButton currentFolder={folder} />
-          <AddFolderButton currentFolder={folder} />
+        <FolderBreadcrumbs currentFolder={folder} />
+          {
+            idactor === "3" && <AddFileButton currentFolder={folder} />
+          }
+
+          { 
+          idactor === "3" && <AddFolderButton currentFolder={folder} />
+          }
+          { 
+          idactor === "2" && <AddFileButton currentFolder={folder} />
+          }
+          
+          
         </div>
         {childFolders.length > 0 && (
           <div className="d-flex flex-wrap">
@@ -204,7 +214,7 @@ export default function Dashboard() {
       </Container>
       <div className="modal">
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header >
+          <Modal.Header>
             <Modal.Title>Bem vindo!!!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -250,7 +260,6 @@ export default function Dashboard() {
           </Form>
 
           <Modal.Footer>
-           
             <Button variant="primary" onClick={createRelationship}>
               Salvar
             </Button>

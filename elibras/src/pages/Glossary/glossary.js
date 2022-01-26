@@ -9,7 +9,7 @@ import { GlossaryInput } from "../../components/Glossary/glossaryImput";
 function Glossary() {
   const [publications, setPublications] = React.useState([]);
   const [newPublish, setNewPublish] = React.useState();
-  const [removeLoader, setRemoveLoader] = React.useState(false);
+  
 
   React.useEffect(() => {
     const db = firebase.firestore();
